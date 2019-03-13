@@ -8,7 +8,7 @@
 import Cocoa
 import WebKit
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     
@@ -16,6 +16,19 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         webView.load(URLRequest(url: URL(string: "https://slack.com/signin")!))
+        webView.navigationDelegate = self
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let url = navigationAction.request.url,
+            navigationAction.navigationType == .linkActivated,
+            let host = url.host,
+            !host.contains("slack.com") else {
+                decisionHandler(.allow)
+                return
+        }
+        decisionHandler(.cancel)
+        NSWorkspace.shared.open(url)
     }
 }
 
