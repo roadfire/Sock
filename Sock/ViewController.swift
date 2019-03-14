@@ -11,6 +11,7 @@ import WebKit
 class ViewController: NSViewController, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
+    var workspace = NSWorkspace.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +23,12 @@ class ViewController: NSViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url,
             navigationAction.navigationType == .linkActivated,
-            let host = url.host,
-            !host.contains("slack.com") else {
+            !url.absoluteString.contains("slack.com") else {
                 decisionHandler(.allow)
                 return
         }
         decisionHandler(.cancel)
-        NSWorkspace.shared.open(url)
+        workspace.open(url)
     }
 }
 

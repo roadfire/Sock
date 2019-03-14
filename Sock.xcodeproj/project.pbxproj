@@ -11,7 +11,7 @@
 		0A8394862237F10100DEC0FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8394852237F10100DEC0FD /* ViewController.swift */; };
 		0A8394882237F10400DEC0FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A8394872237F10400DEC0FD /* Assets.xcassets */; };
 		0A83948B2237F10400DEC0FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8394892237F10400DEC0FD /* Main.storyboard */; };
-		0A8394972237F10400DEC0FD /* SockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8394962237F10400DEC0FD /* SockTests.swift */; };
+		0FF08021223ACF4E00905C41 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF08020223ACF4E00905C41 /* ViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,8 +33,8 @@
 		0A83948C2237F10400DEC0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A83948D2237F10400DEC0FD /* Sock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sock.entitlements; sourceTree = "<group>"; };
 		0A8394922237F10400DEC0FD /* SockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A8394962237F10400DEC0FD /* SockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SockTests.swift; sourceTree = "<group>"; };
 		0A8394982237F10400DEC0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FF08020223ACF4E00905C41 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,8 @@
 		0A8394952237F10400DEC0FD /* SockTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A8394962237F10400DEC0FD /* SockTests.swift */,
 				0A8394982237F10400DEC0FD /* Info.plist */,
+				0FF08020223ACF4E00905C41 /* ViewControllerTests.swift */,
 			);
 			path = SockTests;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8394972237F10400DEC0FD /* SockTests.swift in Sources */,
+				0FF08021223ACF4E00905C41 /* ViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
