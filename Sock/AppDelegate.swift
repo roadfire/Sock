@@ -20,6 +20,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    @IBAction func newTab(_ sender: NSMenuItem) {
+        guard let window = NSApplication.shared.mainWindow else {
+            return
+        }
+        
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let newTab: NSWindowController =
+            storyboard.instantiateController(withIdentifier: "Window") as? NSWindowController else {
+            return
+        }
+        
+        window.addTabbedWindow(newTab.window!, ordered: .above)
+    }
 
 }
 
