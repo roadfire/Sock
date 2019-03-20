@@ -21,14 +21,38 @@ class ViewController: NSViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        guard let url = navigationAction.request.url,
-            navigationAction.navigationType == .linkActivated,
-            !url.absoluteString.contains("slack.com") else {
-                decisionHandler(.allow)
-                return
+
+        guard
+            let url = navigationAction.request.url,
+            navigationAction.navigationType == .linkActivated
+        else {
+            // Default
+            decisionHandler(.allow)
+            return
         }
-        decisionHandler(.cancel)
-        workspace.open(url)
+
+        // Non-slack link
+        if !url.absoluteString.contains("slack.com") {
+            decisionHandler(.cancel)
+            workspace.open(url)
+        }
+
+        // File handler
+        else if url.absoluteString.contains("files.slack.com") {
+            decisionHandler(.allow)
+            workspace.open(url)
+        }
+
+        // Slack internal
+        else if url.absoluteString.contains("slack.com") {
+            decisionHandler(.allow)
+        }
+
+        // Default
+        else {
+            decisionHandler(.cancel)
+            workspace.open(url)
+        }
     }
 }
 
