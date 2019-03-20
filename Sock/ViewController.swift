@@ -37,6 +37,17 @@ class ViewController: NSViewController, WKNavigationDelegate {
             workspace.open(url)
         }
 
+        // File handler
+        else if url.absoluteString.contains("files.slack.com") {
+            decisionHandler(.allow)
+            workspace.open(url)
+        }
+
+        // Slack internal
+        else if url.absoluteString.contains("slack.com") {
+            decisionHandler(.allow)
+        }
+
         // Default
         else {
             decisionHandler(.cancel)
