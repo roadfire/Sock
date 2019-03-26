@@ -12,6 +12,9 @@ class ViewController: NSViewController, WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     var workspace = NSWorkspace.shared
+
+    /// A flag that will be `true` when we have detected that the user is going through the Single Sign On process.
+    var inSSOFlow = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +22,7 @@ class ViewController: NSViewController, WKNavigationDelegate {
         webView.load(URLRequest(url: URL(string: "https://slack.com/signin")!))
         webView.navigationDelegate = self
     }
-    
+
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         guard
@@ -31,8 +34,19 @@ class ViewController: NSViewController, WKNavigationDelegate {
             return
         }
 
+        // If we are on the slack SSO page, go into SSO mode.
+        if url.absoluteString.contains("slack.com/sso") == true {
+            inSSOFlow = true
+            decisionHandler(.allow)
+        }
+
+        // Open all links in Sock while we are doing SSO
+        else if inSSOFlow {
+            decisionHandler(.allow)
+        }
+        
         // Non-slack link
-        if !url.absoluteString.contains("slack.com") {
+        else if !url.absoluteString.contains("slack.com") {
             decisionHandler(.cancel)
             workspace.open(url)
         }
@@ -53,6 +67,12 @@ class ViewController: NSViewController, WKNavigationDelegate {
             decisionHandler(.cancel)
             workspace.open(url)
         }
+    }
+
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        
+        // This is the best signal I can find that SSO has completed. I wish I knew a better way.
+        inSSOFlow = false
     }
 }
 

@@ -19,8 +19,8 @@ class ViewControllerTests: XCTestCase {
     }
     
     func test_decidePolicyFor_slack_dot_com_slash_messages() {
-        let action = MockNavigationAction(request: URLRequest(url: URL(string: "https://roadfire.slack.com/messages/")!),
-                                          navigationType: .linkActivated)
+        // Arrange
+        let action = mockAction(with: "https://roadfire.slack.com/messages/")
         
         let handlerExpectation = expectation(description: "Handler was called")
         let handler: (WKNavigationActionPolicy) -> Void = { actionPolicy in
@@ -28,9 +28,37 @@ class ViewControllerTests: XCTestCase {
             handlerExpectation.fulfill()
         }
         
+        // Act
         vc.webView(WKWebView(), decidePolicyFor: action, decisionHandler: handler)
         
+        // Assert
         waitForExpectations(timeout: 0.1, handler: nil)
+    }
+    
+    func test_decidePolicyFor_slack_dot_com_slash_sso() {
+        // Check precondition
+        XCTAssertFalse(vc.inSSOFlow)
+        
+        // Arrange
+        let action = mockAction(with: "slack.com/sso")
+        let handlerExpectation = expectation(description: "Handler was called")
+        let handler: (WKNavigationActionPolicy) -> Void = { actionPolicy in
+            XCTAssertEqual(.allow, actionPolicy)
+            handlerExpectation.fulfill()
+        }
+
+        // Act
+        vc.webView(WKWebView(), decidePolicyFor: action, decisionHandler: handler)
+        
+        // Assert
+        waitForExpectations(timeout: 0.1, handler: nil)
+        XCTAssertTrue(vc.inSSOFlow)
+    }
+    
+    func mockAction(with urlString: String) -> MockNavigationAction {
+        return MockNavigationAction(request: URLRequest(url: URL(string: urlString)!),
+                                    navigationType: .linkActivated)
+
     }
 }
 
