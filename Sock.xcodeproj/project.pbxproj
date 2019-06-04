@@ -144,6 +144,7 @@
 				TargetAttributes = {
 					0A83947F2237F10100DEC0FD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -152,6 +153,7 @@
 					};
 					0A8394912237F10400DEC0FD = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 						TestTargetID = 0A83947F2237F10100DEC0FD;
 					};
 				};
@@ -366,7 +368,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.roadfiresoftware.Sock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -387,7 +389,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.roadfiresoftware.Sock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -406,7 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattlorentz.SockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sock.app/Contents/MacOS/Sock";
 			};
 			name = Debug;
@@ -426,7 +428,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattlorentz.SockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sock.app/Contents/MacOS/Sock";
 			};
 			name = Release;
