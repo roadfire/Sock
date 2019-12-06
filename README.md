@@ -1,4 +1,4 @@
-# Sock
+# Sock A
 A Slack app for Mac.
 
 ## Why Sock?
